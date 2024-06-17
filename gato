@@ -130,5 +130,3 @@ def menu(): # función para el menú que va a salir al principio de la partida
 
 menu() # llama al menú 
 
-
-menu()

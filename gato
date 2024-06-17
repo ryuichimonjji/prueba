@@ -120,7 +120,7 @@ def mov_comp(): # define función de movimiento comp
 def menu(): # función para el menú que va a salir al principio de la partida
 
     while True: # ciclo para imprimir las opciones
-        print("Menú:")
+        print("Bienvenido al menú:")
         print("1. Player 1 VS Comp.")
         print("2. P1 VS P2.")
         print("3. Salir.")

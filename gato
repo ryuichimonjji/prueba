@@ -1,0 +1,131 @@
+import random
+
+tabla = [" " for x in range(9)]
+
+def print_tabla():
+    fila1 = "| {} | {} | {} |".format(tabla[0], tabla[1], tabla[2])
+    fila2 = "| {} | {} | {} |".format(tabla[3], tabla[4], tabla[5])
+    fila3 = "| {} | {} | {} |".format(tabla[6], tabla[7], tabla[8])
+
+    print()
+    print(fila1)
+    print(fila2)
+    print(fila3)
+    print()
+
+def mov_jugador(jugador_):
+    if jugador_ == "X":
+        numero = 1
+    elif jugador_ == "O":
+        numero = 2
+
+    print("Turno del jugador {}".format(numero))
+
+    while True:
+        opcion = int(input("Ingrese su movimiento (1-9): ").strip())
+        if tabla[opcion - 1] == " ":
+            tabla[opcion - 1] = jugador_
+            break
+        else:
+            print()
+            print("Ese espacio ya está en uso")
+
+def gana(jugador_):
+    if (tabla[0] == jugador_ and tabla[1] == jugador_ and tabla[2] == jugador_) or \
+       (tabla[3] == jugador_ and tabla[4] == jugador_ and tabla[5] == jugador_) or \
+       (tabla[6] == jugador_ and tabla[7] == jugador_ and tabla[8] == jugador_) or \
+       (tabla[0] == jugador_ and tabla[3] == jugador_ and tabla[6] == jugador_) or \
+       (tabla[1] == jugador_ and tabla[4] == jugador_ and tabla[7] == jugador_) or \
+       (tabla[2] == jugador_ and tabla[5] == jugador_ and tabla[8] == jugador_) or \
+       (tabla[0] == jugador_ and tabla[4] == jugador_ and tabla[8] == jugador_) or \
+       (tabla[2] == jugador_ and tabla[4] == jugador_ and tabla[6] == jugador_):
+        return True
+    else:
+        return False
+
+def empate():
+    if " " not in tabla:
+        return True
+    else:
+        return False
+
+def jugar_vs_p2():
+    print_tabla()
+    while True:
+        mov_jugador("X")
+        print_tabla()
+        if gana("X"):
+            print("¡El jugador X gana!")
+            break
+        elif empate():
+            print("¡Empate!")
+            break
+        mov_jugador("O")
+        print_tabla()
+        if gana("O"):
+            print("¡El jugador O gana!")
+            break
+        elif empate():
+            print("¡Empate!")
+            break
+
+
+def jugar_vs_comp():
+    print_tabla()
+    while True:
+        mov_jugador("X")
+        print_tabla()
+        if gana("X"):
+            print("¡El jugador X gana!")
+            break
+        elif empate():
+            print("¡Empate!")
+            break
+        mov_comp()
+        print_tabla()
+        if gana("O"):
+            print("¡El jugador O gana!")
+            break
+        elif empate():
+            print("¡Empate!")
+            break
+
+
+def mov_comp():
+    jugador_ = "O"
+    numero = 2
+
+    print("Turno del jugador {}".format(numero))
+
+    while True:
+        opcion = int(random.randint(1, 9))
+        if tabla[opcion - 1] == " ":
+            tabla[opcion - 1] = jugador_
+            break
+
+
+
+
+def menu():
+
+    while True:
+        print("Menú:")
+        print("1. Player 1 VS Comp.")
+        print("2. P1 VS P2.")
+        print("3. Salir.")
+
+        opcion = input("Ingresa el número de la opción que deseas: ")
+
+        if opcion == '1':
+            jugar_vs_comp()
+        elif opcion == '2':
+            jugar_vs_p2()
+        elif opcion == '3':
+            print("¡Gracias por jugar!")
+            break
+        else:
+            print("Opción inválida. Por favor, selecciona una opción válida (1-3).")
+
+
+
+menu()

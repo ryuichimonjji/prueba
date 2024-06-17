@@ -13,6 +13,9 @@ def print_tabla(): # define la función que imprime la tabla
     print(fila3)
     print()
 
+def reset_tabla(): # funciòn para resetear la tabla despuès de una partida
+    tabla = [" " for x in range(9)]
+
 def mov_jugador(jugador_): # define la función que gestiona el movimiento del jugador
     if jugador_ == "X":
         numero = 1
@@ -56,17 +59,21 @@ def jugar_vs_p2(): # función para jugar contra p2
         print_tabla()
         if gana("X"):
             print("¡El jugador X gana!")
+            reset_tabla()
             break
         elif empate():
             print("¡Empate!")
+            reset_tabla()
             break
         mov_jugador("O")
         print_tabla()
         if gana("O"):
             print("¡El jugador O gana!")
+            reset_tabla()
             break
         elif empate():
             print("¡Empate!")
+            reset_tabla()
             break
 # imprime el juego con la tabla actualizada después de cada movimiento alternando entre jugadores e indica quién gana o si hay empate, si una de las condiciones se cumple se rompe el buclé con un break
 
@@ -77,17 +84,21 @@ def jugar_vs_comp(): # función para jugar vs comp
         print_tabla()
         if gana("X"):
             print("¡El jugador X gana!")
+            reset_tabla()
             break
         elif empate():
             print("¡Empate!")
+            reset_tabla()
             break
         mov_comp()
         print_tabla()
         if gana("O"):
             print("¡El jugador O gana!")
+            reset_tabla()
             break
         elif empate():
             print("¡Empate!")
+            reset_tabla()
             break
 
 
@@ -129,4 +140,3 @@ def menu(): # función para el menú que va a salir al principio de la partida
 
 
 menu() # llama al menú 
-

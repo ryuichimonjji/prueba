@@ -1,27 +1,27 @@
-import random
+import random # importar numero aleatorio para la opción de jugar vs comp
 
-tabla = [" " for x in range(9)]
+tabla = [" " for x in range(9)] # crea una lista con 9 elementos para el juego, cada uno es u espacio en blanco
 
-def print_tabla():
+def print_tabla(): # define la función que imprime la tabla
     fila1 = "| {} | {} | {} |".format(tabla[0], tabla[1], tabla[2])
     fila2 = "| {} | {} | {} |".format(tabla[3], tabla[4], tabla[5])
-    fila3 = "| {} | {} | {} |".format(tabla[6], tabla[7], tabla[8])
+    fila3 = "| {} | {} | {} |".format(tabla[6], tabla[7], tabla[8]) 
 
-    print()
+    print() # imprime la tabla
     print(fila1)
     print(fila2)
     print(fila3)
     print()
 
-def mov_jugador(jugador_):
+def mov_jugador(jugador_): # define la función que gestiona el movimiento del jugador
     if jugador_ == "X":
         numero = 1
     elif jugador_ == "O":
         numero = 2
 
-    print("Turno del jugador {}".format(numero))
+    print("Turno del jugador {}".format(numero)) # imprime de quién es el turno, la función .format hace que se puedan insertar valores dentro del string de manera más ordenada
 
-    while True:
+    while True: # ciclo while para poner el movimiento del jugador en la tabla
         opcion = int(input("Ingrese su movimiento (1-9): ").strip())
         if tabla[opcion - 1] == " ":
             tabla[opcion - 1] = jugador_
@@ -30,7 +30,7 @@ def mov_jugador(jugador_):
             print()
             print("Ese espacio ya está en uso")
 
-def gana(jugador_):
+def gana(jugador_): # función para verificar si el jugador gana
     if (tabla[0] == jugador_ and tabla[1] == jugador_ and tabla[2] == jugador_) or \
        (tabla[3] == jugador_ and tabla[4] == jugador_ and tabla[5] == jugador_) or \
        (tabla[6] == jugador_ and tabla[7] == jugador_ and tabla[8] == jugador_) or \
@@ -41,17 +41,17 @@ def gana(jugador_):
        (tabla[2] == jugador_ and tabla[4] == jugador_ and tabla[6] == jugador_):
         return True
     else:
-        return False
+        return False # verifica todas las posibles combinaciones para ganar, si es así te retorna a True, si no te retorna a False
 
-def empate():
+def empate(): # función para verificar empate, si no hay espacios vacíos te retorna a True, si no te retorna a False
     if " " not in tabla:
         return True
     else:
         return False
 
-def jugar_vs_p2():
-    print_tabla()
-    while True:
+def jugar_vs_p2(): # función para jugar contra p2
+    print_tabla() # imprime la tabla
+    while True: # ciclo while
         mov_jugador("X")
         print_tabla()
         if gana("X"):
@@ -68,11 +68,11 @@ def jugar_vs_p2():
         elif empate():
             print("¡Empate!")
             break
+# imprime el juego con la tabla actualizada después de cada movimiento alternando entre jugadores e indica quién gana o si hay empate, si una de las condiciones se cumple se rompe el buclé con un break
 
-
-def jugar_vs_comp():
-    print_tabla()
-    while True:
+def jugar_vs_comp(): # función para jugar vs comp
+    print_tabla() # imprime la tabla
+    while True: # ciclo while para jugar vs comp, se imprime mensaje de victoria o empate
         mov_jugador("X")
         print_tabla()
         if gana("X"):
@@ -91,32 +91,32 @@ def jugar_vs_comp():
             break
 
 
-def mov_comp():
-    jugador_ = "O"
-    numero = 2
+def mov_comp(): # define función de movimiento comp
+    jugador_ = "O" # indica que la computadora se le asigne el símbolo O
+    numero = 2 # número de jugador que le corresponde a la computadora
 
-    print("Turno del jugador {}".format(numero))
+    print("Turno del jugador {}".format(numero)) # imprime de qué jugador es el turno
 
-    while True:
-        opcion = int(random.randint(1, 9))
-        if tabla[opcion - 1] == " ":
+    while True: # ciclo while para el movimiento de la computadora hasta que sea válido, luego se rompe con un break
+        opcion = int(random.randint(1, 9)) # genera un número entero y aleatorio
+        if tabla[opcion - 1] == " ": # verificar si la opción está disponible
             tabla[opcion - 1] = jugador_
             break
 
 
 
 
-def menu():
+def menu(): # función para el menú que va a salir al principio de la partida
 
-    while True:
+    while True: # ciclo para imprimir las opciones
         print("Menú:")
         print("1. Player 1 VS Comp.")
         print("2. P1 VS P2.")
         print("3. Salir.")
 
-        opcion = input("Ingresa el número de la opción que deseas: ")
+        opcion = input("Ingresa el número de la opción que deseas: ") # print para elegir la opción
 
-        if opcion == '1':
+        if opcion == '1': # opciones + las funciones a las que se derivan después de elegir cada opción
             jugar_vs_comp()
         elif opcion == '2':
             jugar_vs_p2()
@@ -124,8 +124,11 @@ def menu():
             print("¡Gracias por jugar!")
             break
         else:
-            print("Opción inválida. Por favor, selecciona una opción válida (1-3).")
+            print("Opción inválida. Por favor, selecciona una opción válida (1-3).") 
 
+
+
+menu() # llama al menú 
 
 
 menu()

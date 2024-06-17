@@ -1,14 +1,14 @@
 file = open('file.txt', 'r')
 f = file.read() # abrir archivo .txt con la función
 
-# print(f)
+print(f) # ejecutar la función que lee el archivo
 
 
 
-num_letras = sum(c.isalpha() for c in f)  # cuenta las letras
-num_espacios = sum(c.isspace() for c in f)  # cuenta los espacios
-resumen_contenido = f"Cantidad de letras: {num_letras}\nCantidad de espacios: {num_espacios}" #Crea el contenido resumen
+num_letras = sum(c.isalpha() for c in f)  # cuenta las letras con la función, devuelve valores true o false
+num_espacios = sum(c.isspace() for c in f)  # función para cntar los espacios, devuelve valores true o false
+resumen_contenido = f"Cantidad de letras: {num_letras}\nCantidad de espacios: {num_espacios}" # crea el contenido resumen
 
 
-with open('resumen.txt', 'w') as resumen_archivo: #Escribe el resumen en TXT
+with open('resumen.txt', 'w') as resumen_archivo: # escribe el resumen en .txt
     resumen_archivo.write(resumen_contenido)

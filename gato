@@ -13,8 +13,9 @@ def print_tabla(): # define la función que imprime la tabla
     print(fila3)
     print()
 
-def reset_tabla(): # funciòn para resetear la tabla despuès de una partida
-    tabla = [" " for x in range(9)]
+def reset_tabla(): # función para resetear la tabla después de una partida
+    global tabla # para referirse a la variable tabla en el ámbito global en vez de crear una nueva variable local con el mismo nombre,
+    tabla = [" " for x in range(9)] # así cuando llame a la función reset_tabla() se reinicie correctamente
 
 def mov_jugador(jugador_): # define la función que gestiona el movimiento del jugador
     if jugador_ == "X":
@@ -139,4 +140,4 @@ def menu(): # función para el menú que va a salir al principio de la partida
 
 
 
-menu() # llama al menú 
+menu() # llama al menú

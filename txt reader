@@ -1,5 +1,5 @@
 file = open('file.txt', 'r')
-f = file.read() # abrir archivo .txt con la función
+f = file.read() # para abrir archivo .txt con la función
 
 print(f) # ejecutar la función que lee el archivo
 
